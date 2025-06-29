@@ -6,26 +6,26 @@ public class Film {
     public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "name", "name",
+            "description", "description",
             "year", "year",
             "genre_id", "genreId",
             "minimal_age", "minimalAge",
             "duration_in_minutes ", "durationInMinutes",
             "file_id", "fileId"
-            );
+    );
     private int id;
     private String name;
+    private String description;
     private int year;
     private int genreId;
     private int minimalAge;
-    int durationInMinutes;
+    private int durationInMinutes;
     private int fileId;
 
-    public Film() {
-    }
-
-    public Film(int id, String name, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {
+    public Film(int id, String name, String description, int year, int genreId, int minimalAge, int durationInMinutes, int fileId) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.year = year;
         this.genreId = genreId;
         this.minimalAge = minimalAge;
@@ -87,5 +87,13 @@ public class Film {
 
     public void setFileId(int fileId) {
         this.fileId = fileId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

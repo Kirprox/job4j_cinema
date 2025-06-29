@@ -16,18 +16,18 @@ public class FilmSession {
     private int filmId;
     private int hallsId;
     private LocalDateTime startTime;
-    private LocalDateTime endDime;
+    private LocalDateTime endTime;
     private int price;
 
     public FilmSession() {
     }
 
-    public FilmSession(int id, int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endDime, int price) {
+    public FilmSession(int id, int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.id = id;
         this.filmId = filmId;
         this.hallsId = hallsId;
         this.startTime = startTime;
-        this.endDime = endDime;
+        this.endTime = endTime;
         this.price = price;
     }
 
@@ -63,12 +63,12 @@ public class FilmSession {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndDime() {
-        return endDime;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setEndDime(LocalDateTime endDime) {
-        this.endDime = endDime;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public int getPrice() {
