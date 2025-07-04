@@ -4,19 +4,22 @@ import java.time.LocalDateTime;
 
 public class FilmSessionDto {
     private int id;
+    private int filmId;
     private String film;
+    private int hallId;
     private String hall;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int price;
 
-    public FilmSessionDto(int id, String film, String hall, LocalDateTime startTime,
-                          LocalDateTime endDime, int price) {
+    public FilmSessionDto(int id, int filmId, String film, int hallId, String hall, LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.id = id;
+        this.filmId = filmId;
         this.film = film;
+        this.hallId = hallId;
         this.hall = hall;
         this.startTime = startTime;
-        this.endTime = endDime;
+        this.endTime = endTime;
         this.price = price;
     }
 
@@ -74,5 +77,21 @@ public class FilmSessionDto {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(int hallId) {
+        this.hallId = hallId;
+    }
+
+    public int getFilmId() {
+        return filmId;
+    }
+
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
     }
 }

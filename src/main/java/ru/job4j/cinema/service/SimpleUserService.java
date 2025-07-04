@@ -16,6 +16,16 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
+    public Optional<User> save(User user) {
+            return userRepository.save(user);
+    }
+
+    @Override
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    @Override
     public Optional<User> getUserById(int id) {
         return userRepository.findById(id);
     }

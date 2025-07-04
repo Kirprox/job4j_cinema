@@ -1,5 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
 <body>
-<h2>Hello World!</h2>
+<div th:replace="fragments/navigation :: navigation"></div>
+<div class="container mt-4">
+    <div class="nav">
+        <a class="nav-item nav-link active" href="/">Главная</a>
+        <a class="nav-item nav-link" th:href="@{/sessions}">Расписание</a>
+        <a class="nav-item nav-link" th:href="@{/films}">Кинотека</a>
+    </div>
+</div>
+<footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

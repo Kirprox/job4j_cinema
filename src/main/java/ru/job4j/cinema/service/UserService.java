@@ -6,6 +6,10 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface UserService {
+    Optional<User> save(User user);
+
+    Optional<User> findByEmailAndPassword(String email, String password);
+
     Optional<User> getUserById(int id);
 
     Collection<User> getAllUsers();

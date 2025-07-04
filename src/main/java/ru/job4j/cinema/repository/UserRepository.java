@@ -6,9 +6,11 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface UserRepository {
-    User save(User user);
+    Optional<User> save(User user);
 
     boolean deleteById(int id);
+
+    Optional<User> findByEmailAndPassword(String email, String password);
 
     Optional<User> findById(int id);
 

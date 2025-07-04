@@ -47,7 +47,7 @@ public class FilmSession {
         this.filmId = filmId;
     }
 
-    public int getHallsId() {
+    public int getHallId() {
         return hallsId;
     }
 

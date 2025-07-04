@@ -33,9 +33,10 @@ public class SimpleFilmSessionService implements FilmSessionService {
 
         Optional<FilmDto> filmOptional = filmService.getFilmById(session.getFilmId());
         String filmName = filmOptional.map(FilmDto::getName).orElse("Фильм не найден!");
-        Optional<Hall> hallOptional = hallService.getHallById(session.getHallsId());
+        Optional<Hall> hallOptional = hallService.getHallById(session.getHallId());
         String hallName = hallOptional.map(Hall::getName).orElse("Кинозал не найден!");
-        return Optional.of(new FilmSessionDto(session.getId(), filmName, hallName, session.getStartTime(),
+        return Optional.of(new FilmSessionDto(session.getId(), session.getFilmId(), filmName, session.getHallId(),
+                hallName, session.getStartTime(),
                 session.getEndTime(), session.getPrice()));
     }
 
@@ -58,11 +59,12 @@ public class SimpleFilmSessionService implements FilmSessionService {
             String filmName = filmMap.containsKey(filmSession.getFilmId())
                     ? filmMap.get(filmSession.getFilmId()).getName()
                     : "Фильм не найден!";
-            String hallName = hallMap.containsKey(filmSession.getHallsId())
-                    ? hallMap.get(filmSession.getHallsId()).getName()
+            String hallName = hallMap.containsKey(filmSession.getHallId())
+                    ? hallMap.get(filmSession.getHallId()).getName()
                     : "Кинозал не найден!";
-            resultCollection.add(new FilmSessionDto(filmSession.getId(), filmName, hallName,
-                    filmSession.getStartTime(), filmSession.getEndTime(), filmSession.getPrice()));
+            resultCollection.add(new FilmSessionDto(filmSession.getId(), filmSession.getFilmId(),
+                    filmName, filmSession.getHallId(), hallName, filmSession.getStartTime(),
+                    filmSession.getEndTime(), filmSession.getPrice()));
         }
         return resultCollection;
     }

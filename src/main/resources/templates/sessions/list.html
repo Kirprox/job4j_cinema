@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+<div th:replace="fragments/navigation :: navigation"></div>
+
+<div class="container mt-4">
+    <div class="row">
+        <table class="table table">
+            <thead>
+            <tr>
+                <th scope="col">Название фильма</th>
+                <th scope="col">Зал</th>
+                <th scope="col">Начало сеанса</th>
+                <th scope="col">Конец сеанса</th>
+                <th scope="col">Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sessions : ${sessions}">
+                <td>
+                    <a th:text="${sessions.film}"
+                       th:href="@{/buy/{sessionId}(sessionId=${sessions.id})}"></a>
+                </td>
+                <td th:text="${sessions.hall}"></td>
+                <td th:text="${#temporals.format(sessions.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${#temporals.format(sessions.endTime, 'dd-MM-yyyy HH:mm')}"></td>
+                <td th:text="${sessions.price} + ' ₽'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>
