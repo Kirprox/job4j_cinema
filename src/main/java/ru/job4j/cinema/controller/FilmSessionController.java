@@ -18,6 +18,7 @@ public class FilmSessionController {
     @GetMapping
     public String getSessionPage(Model model) {
         model.addAttribute("sessions", filmSessionService.getAllFilmSessions());
+        model.addAttribute("activePage", "sessions");
         return "sessions/list";
     }
 }

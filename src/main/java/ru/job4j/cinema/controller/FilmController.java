@@ -18,6 +18,7 @@ public class FilmController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("films", filmService.getAllFilms());
+        model.addAttribute("activePage", "films");
         return "films/list";
     }
 }

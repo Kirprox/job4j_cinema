@@ -27,7 +27,6 @@ public class SessionFilter extends HttpFilter {
         if (user == null) {
             user = new User();
             user.setFullName("Гость");
-            session.setAttribute("user", user);
         }
         request.setAttribute("user", user);
     }

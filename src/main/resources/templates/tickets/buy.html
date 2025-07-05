@@ -3,46 +3,59 @@
 <head th:include="fragments/header :: header"></head>
 <body>
 <div th:replace="fragments/navigation :: navigation"></div>
+
 <div class="container">
-    <form class="mt-3" th:action="@{/buy}" method="post" th:object="${ticket}" >
+    <form class="mt-3" th:action="@{/buy}" method="post" th:object="${ticket}">
         <input type="hidden" th:field="*{sessionId}" />
         <input type="hidden" th:field="*{userId}" />
 
-        <div class="mb-3">
-            <img th:src="@{/files/{fileId}(fileId=${film.id})}" class="img-fluid" style="max-width: 300px;" alt="No image">
+        <div class="row mb-3">
+            <div class="col-md-4 text-center">
+                <img th:src="@{/files/{fileId}(fileId=${film.id})}"
+                     class="img-fluid"
+                     style="max-width: 250px; height: auto;"
+                     alt="No image">
+            </div>
 
+            <div class="col-md-8 d-flex flex-column justify-content-start">
+                <div class="mb-3" style="max-width: 65px;">
+                    <label for="row"><b>Выберите ряд</b></label>
+                    <select class="form-control" id="row" th:field="*{rowNumber}">
+                        <option th:each="i : ${#numbers.sequence(1, hall.rowCount)}"
+                                th:value="${i}" th:text="${i}"></option>
+                    </select>
+                </div>
+                <div class="mb-3" style="max-width: 65px;">
+                    <label for="place"><b>Выберите место</b></label>
+                    <select class="form-control" id="place" th:field="*{placeNumber}">
+                        <option th:each="i : ${#numbers.sequence(1, hall.placeCount)}"
+                                th:value="${i}" th:text="${i}"></option>
+                    </select>
+                </div>
+            </div>
         </div>
 
+        <div class="mb-3">
+            <p th:text="${film.name}"></p>
+        </div>
         <div class="mb-3">
             <label><b>Описание фильма</b></label>
             <p th:text="${film.description}"></p>
         </div>
-        <div class="mb-3">
-            <label for="row"><b>Выберите ряд</b></label>
-            <select class="form-control" id="row" th:field="*{rowNumber}">
-                <option th:each="i : ${#numbers.sequence(1, hall.rowCount)}"
-                        th:value="${i}" th:text="${i}"></option>
-            </select>
-            <br><br>
-            <label for="row"><b>Выберите место</b></label>
-            <select class="form-control" id="place" th:field="*{placeNumber}">
-                <option th:each="i : ${#numbers.sequence(1, hall.placeCount)}"
-                        th:value="${i}" th:text="${i}"></option>
-            </select>
-        </div>
+
         <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
             <span th:text="${errorMessage}">Ошибка</span>
         </div>
+
         <div class="mb-3 row">
             <div class="col-6"></div>
             <div class="col-6">
                 <div class="row">
-                    <div class="col-6"><a class="btn btn-primary w-100"
-                                          th:href="@{/sessions}">Отмена</a></div>
                     <div class="col-6">
-                        <button class="btn btn-primary w-100"
-                                type="submit">купить
-                        </button>
+                        <a class="btn btn-primary w-100" th:href="@{/sessions}">Отмена</a>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-primary w-100" type="submit">Купить</button>
                     </div>
                 </div>
             </div>
