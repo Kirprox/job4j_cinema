@@ -31,20 +31,6 @@ public class SimpleFileService implements FileService {
         return Optional.of(new FileDto(fileOptional.get().getName(), fileContent));
     }
 
-    @Override
-    public Collection<FileDto> getAllFiles() {
-        var filesCollection = fileRepository.findAll();
-        Collection<FileDto> resultCollection = new ArrayList<>();
-        if (filesCollection.isEmpty()) {
-            return Collections.emptyList();
-        }
-        for (File file : filesCollection) {
-            var fileContent = readBytes(file.getPath());
-            resultCollection.add(new FileDto(file.getName(), fileContent));
-        }
-        return resultCollection;
-    }
-
     private byte[] readBytes(String path) {
         try {
             return Files.readAllBytes(Path.of(path));

@@ -9,7 +9,7 @@ import ru.job4j.cinema.service.FilmSessionService;
 @Controller
 @RequestMapping("/sessions")
 public class FilmSessionController {
-    FilmSessionService filmSessionService;
+    private final FilmSessionService filmSessionService;
 
     public FilmSessionController(FilmSessionService filmSessionService) {
         this.filmSessionService = filmSessionService;

@@ -6,11 +6,5 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface TicketService {
-    Optional<Ticket> getTicketById(int id);
-
-    Collection<Ticket> getAllTickets();
-
     Ticket save(Ticket ticket);
-
-    boolean deleteById(int id);
 }

@@ -55,7 +55,7 @@ public class Sql2oTicketRepository implements TicketRepository {
     public Collection<Ticket> findAll() {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM tickets");
-            return query.executeAndFetch(Ticket.class);
+            return query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetch(Ticket.class);
         }
     }
 }

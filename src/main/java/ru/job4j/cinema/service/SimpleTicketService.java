@@ -16,22 +16,8 @@ public class SimpleTicketService implements TicketService {
     }
 
     @Override
-    public Optional<Ticket> getTicketById(int id) {
-        return ticketRepository.findById(id);
-    }
-
-    @Override
-    public Collection<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
-    }
-
-    @Override
     public Ticket save(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
 
-    @Override
-    public boolean deleteById(int id) {
-        return ticketRepository.deleteById(id);
-    }
 }

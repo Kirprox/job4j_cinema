@@ -34,4 +34,13 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
                     .executeAndFetch(FilmSession.class);
         }
     }
+
+    @Override
+    public void deleteById(int id) {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("DELETE FROM film_sessions");
+            query.setColumnMappings(FilmSession.COLUMN_MAPPING)
+                    .executeAndFetch(FilmSession.class);
+        }
+    }
 }

@@ -2,6 +2,7 @@ package ru.job4j.cinema.repository;
 
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 import ru.job4j.cinema.model.User;
 
 import java.util.Collection;
@@ -28,8 +29,8 @@ public class Sql2oUserRepository implements UserRepository {
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
             return Optional.of(user);
-        } catch (Exception e) {
-            return Optional.empty();
+        } catch (Sql2oException e) {
+            throw new Sql2oException("Failed to save user", e);
         }
     }
 
@@ -65,7 +66,7 @@ public class Sql2oUserRepository implements UserRepository {
             var query = connection.createQuery("SELECT * FROM users WHERE id = :id");
             query.addParameter("id", id);
             var user = query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetchFirst(User.class);
-            return Optional.of(user);
+            return Optional.ofNullable(user);
         }
     }
 
@@ -73,7 +74,7 @@ public class Sql2oUserRepository implements UserRepository {
     public Collection<User> findAll() {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM users");
-            return query.executeAndFetch(User.class);
+            return query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetch(User.class);
         }
     }
 }

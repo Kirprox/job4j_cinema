@@ -9,4 +9,6 @@ public interface GenreRepository {
     Optional<Genre> findById(int id);
 
     Collection<Genre> findAll();
+
+    void deleteById(int id);
 }

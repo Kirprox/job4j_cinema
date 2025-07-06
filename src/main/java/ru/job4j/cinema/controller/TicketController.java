@@ -12,14 +12,12 @@ import ru.job4j.cinema.service.*;
 @Controller
 @RequestMapping("/buy")
 public class TicketController {
-    private final UserService userService;
     private final TicketService ticketService;
     private final FilmSessionService filmSessionService;
     private final HallService hallService;
     private final FilmService filmService;
 
-    public TicketController(UserService userService, TicketService ticketService, FilmSessionService filmSessionService, HallService hallService, FilmService filmService) {
-        this.userService = userService;
+    public TicketController(TicketService ticketService, FilmSessionService filmSessionService, HallService hallService, FilmService filmService) {
         this.ticketService = ticketService;
         this.filmSessionService = filmSessionService;
         this.hallService = hallService;

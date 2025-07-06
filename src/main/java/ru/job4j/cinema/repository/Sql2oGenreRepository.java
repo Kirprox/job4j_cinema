@@ -28,8 +28,16 @@ public class Sql2oGenreRepository implements GenreRepository {
     @Override
     public Collection<Genre> findAll() {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("SELECT * from genres");
+            var query = connection.createQuery("SELECT * FROM genres");
             return query.executeAndFetch(Genre.class);
+        }
+    }
+
+    @Override
+    public void deleteById(int id) {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("DELETE FROM genres");
+            query.executeAndFetch(Genre.class);
         }
     }
 }

@@ -7,6 +7,4 @@ import java.util.Optional;
 
 public interface FileService {
     Optional<FileDto> getFileById(int id);
-
-    Collection<FileDto> getAllFiles();
 }

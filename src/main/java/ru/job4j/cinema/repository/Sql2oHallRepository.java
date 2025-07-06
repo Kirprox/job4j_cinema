@@ -34,4 +34,13 @@ public class Sql2oHallRepository implements HallRepository {
                     .executeAndFetch(Hall.class);
         }
     }
+
+    @Override
+    public void deleteById(int id) {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("DELETE FROM halls");
+            query.setColumnMappings(Hall.COLUMN_MAPPING)
+                    .executeAndFetch(Hall.class);
+        }
+    }
 }

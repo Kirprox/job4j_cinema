@@ -9,4 +9,6 @@ public interface FilmSessionRepository {
     Optional<FilmSession> findById(int id);
 
     Collection<FilmSession> findAll();
+
+    void deleteById(int id);
 }

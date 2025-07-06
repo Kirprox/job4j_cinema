@@ -9,4 +9,6 @@ public interface HallRepository {
     Optional<Hall> findById(int id);
 
     Collection<Hall> findAll();
+
+    void deleteById(int id);
 }
