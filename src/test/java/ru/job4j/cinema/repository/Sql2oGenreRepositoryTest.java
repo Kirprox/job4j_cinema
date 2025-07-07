@@ -11,21 +11,23 @@ import java.util.Collection;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.*;
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class Sql2oGenreRepositoryTest {
 
-    private static Sql2oGenreRepository genreRepository;
-    private static Sql2o sql2o;
+    private Sql2oGenreRepository genreRepository;
+    private Sql2oFilmRepository filmRepository;
+    private Sql2o sql2o;
 
     @BeforeAll
-    static void initRepositories() throws Exception {
-        Properties properties = new Properties();
+    void initRepositories() throws Exception {
+        var properties = new Properties();
         try (InputStream input = Sql2oGenreRepositoryTest.class.getClassLoader()
                 .getResourceAsStream("connection.properties")) {
             properties.load(input);
         }
 
-        DatasourceConfiguration configuration = new DatasourceConfiguration();
+        var configuration = new DatasourceConfiguration();
         DataSource dataSource = configuration.connectionPool(
                 properties.getProperty("datasource.url"),
                 properties.getProperty("datasource.username"),
@@ -34,12 +36,16 @@ class Sql2oGenreRepositoryTest {
         sql2o = configuration.databaseClient(dataSource);
 
         genreRepository = new Sql2oGenreRepository(sql2o);
+        filmRepository = new Sql2oFilmRepository(sql2o); // используется для удаления фильмов
     }
 
     @AfterEach
-    void clearGenres() {
+    void clearDatabase() {
+        filmRepository.findAll()
+                .forEach(f -> filmRepository.deleteById(f.getId())); // сначала удаляем фильмы
+
         genreRepository.findAll()
-                .forEach(g -> genreRepository.deleteById(g.getId()));
+                .forEach(g -> genreRepository.deleteById(g.getId())); // потом жанры
     }
 
     @Test
