@@ -17,6 +17,7 @@ class Sql2oGenreRepositoryTest {
 
     private Sql2oGenreRepository genreRepository;
     private Sql2oFilmRepository filmRepository;
+    private Sql2oFilmSessionRepository filmSessionRepository;
     private Sql2o sql2o;
 
     @BeforeAll
@@ -36,16 +37,20 @@ class Sql2oGenreRepositoryTest {
         sql2o = configuration.databaseClient(dataSource);
 
         genreRepository = new Sql2oGenreRepository(sql2o);
-        filmRepository = new Sql2oFilmRepository(sql2o); // используется для удаления фильмов
+        filmRepository = new Sql2oFilmRepository(sql2o);
+        filmSessionRepository = new Sql2oFilmSessionRepository(sql2o);
     }
 
     @AfterEach
     void clearDatabase() {
+        filmSessionRepository.findAll()
+                .forEach(s -> filmSessionRepository.deleteById(s.getId()));
+
         filmRepository.findAll()
-                .forEach(f -> filmRepository.deleteById(f.getId())); // сначала удаляем фильмы
+                .forEach(f -> filmRepository.deleteById(f.getId()));
 
         genreRepository.findAll()
-                .forEach(g -> genreRepository.deleteById(g.getId())); // потом жанры
+                .forEach(g -> genreRepository.deleteById(g.getId()));
     }
 
     @Test
