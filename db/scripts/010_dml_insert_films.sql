@@ -1,4 +1,4 @@
-INSERT INTO films (name, description, year, genre_id, minimal_age, duration_in_minutes, file_id) VALUES
+INSERT INTO films (name, description, "year", genre_id, minimal_age, duration_in_minutes, file_id) VALUES
 ('Книга Илая', 'После апокалипсиса человек несёт книгу, способную спасти человечество.', 2010, 1, 16, 118, 1),
 ('Хроники Риддика', 'Заключённый сбегает, чтобы спасти вселенную от уничтожения.', 2004, 2, 16, 119, 2),
 ('Джон Уик', 'Бывший убийца мстит за убитую собаку.', 2014, 1, 18, 101, 3),
