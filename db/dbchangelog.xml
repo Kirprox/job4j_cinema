@@ -12,4 +12,9 @@
     <include file="scripts/005_ddl_create_table_film_sessions.sql" relativeToChangelogFile="true"/>
     <include file="scripts/006_ddl_create_table_users.sql" relativeToChangelogFile="true"/>
     <include file="scripts/007_ddl_create_table_tickets.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/008_dml_insert_files.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/009_dml_insert_genres.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/010_dml_insert_films.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/011_dml_insert_halls.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_dml_insert_film_session.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

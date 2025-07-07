@@ -17,5 +17,8 @@
 - Maven 3.8+
 - PostgreSQL 15+
 
+## Процент покрытия тестами 
+![img.png](img.png)
+
 ## Автор
 Kirill R.

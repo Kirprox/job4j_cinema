@@ -38,9 +38,29 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
     @Override
     public void deleteById(int id) {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("DELETE FROM film_sessions");
-            query.setColumnMappings(FilmSession.COLUMN_MAPPING)
-                    .executeAndFetch(FilmSession.class);
+            var query = connection.createQuery("DELETE FROM film_sessions WHERE id = :id");
+            query.addParameter("id", id);
+            query.executeUpdate();
         }
+    }
+
+    @Override
+    public FilmSession save(FilmSession filmSession) {
+        try (var connection = sql2o.open()) {
+            var sql = """
+                    INSERT INTO film_sessions (film_id,
+                     halls_id, start_time, end_time, price)
+                    VALUES (:filmId, :hallsId,
+                     :startTime, :endTime, :price)""";
+            var query = connection.createQuery(sql, true)
+                    .addParameter("filmId", filmSession.getFilmId())
+                    .addParameter("hallsId", filmSession.getHallId())
+                    .addParameter("startTime", filmSession.getStartTime())
+                    .addParameter("endTime", filmSession.getEndTime())
+                    .addParameter("price", filmSession.getPrice());
+            int generatedId = query.executeUpdate().getKey(Integer.class);
+            filmSession.setId(generatedId);
+        }
+        return filmSession;
     }
 }
