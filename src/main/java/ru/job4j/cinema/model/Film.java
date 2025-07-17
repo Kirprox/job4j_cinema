@@ -33,6 +33,9 @@ public class Film {
         this.fileId = fileId;
     }
 
+    public Film() {
+    }
+
     public int getId() {
         return id;
     }

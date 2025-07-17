@@ -1,23 +1,20 @@
 package ru.job4j.cinema.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FileDto;
-import ru.job4j.cinema.model.File;
 import ru.job4j.cinema.repository.FileRepository;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 @Service
 public class SimpleFileService implements FileService {
     private final FileRepository fileRepository;
 
-    public SimpleFileService(FileRepository fileRepository) {
+    public SimpleFileService(@Qualifier("jdbcFileRepository") FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
 

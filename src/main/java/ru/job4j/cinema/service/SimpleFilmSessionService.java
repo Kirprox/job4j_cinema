@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.dto.FilmSessionDto;
@@ -16,7 +17,7 @@ public class SimpleFilmSessionService implements FilmSessionService {
     private final FilmService filmService;
     private final HallService hallService;
 
-    public SimpleFilmSessionService(FilmSessionRepository filmSessionRepository,
+    public SimpleFilmSessionService(@Qualifier("jdbcFilmSessionRepository") FilmSessionRepository filmSessionRepository,
                                     FilmService filmService, HallService hallService) {
         this.filmSessionRepository = filmSessionRepository;
         this.filmService = filmService;

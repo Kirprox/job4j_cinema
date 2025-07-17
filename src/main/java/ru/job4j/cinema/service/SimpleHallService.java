@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.repository.HallRepository;
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class SimpleHallService implements HallService {
     private final HallRepository hallRepository;
 
-    public SimpleHallService(HallRepository hallRepository) {
+    public SimpleHallService(@Qualifier("jdbcHallRepository") HallRepository hallRepository) {
         this.hallRepository = hallRepository;
     }
 
